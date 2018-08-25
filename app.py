@@ -14,6 +14,9 @@ def get_recepies():
     return render_template("recepies.html", 
     recepies=mongo.db.recepies.find())
 
+@app.route('/add_recepie')
+def add_recepie():
+    return render_template('addrecepie.html')
     
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),

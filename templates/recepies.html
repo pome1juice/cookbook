@@ -1,29 +1,27 @@
 {% extends 'base.html'%}
 {% block content %}
-        {% for recepie in recepies %}
-        {{recepie.recepie_name}}
-        {{recepie.category_name}}
-        {{recepie.recepie_aller}}
-        {{recepie.recepie_votes}}
-        {{recepie.recepie_img}}
-        {{recepie.recepie_ingredients}}
-        {{recepie.recepie_ins}}
-        {% endfor %}
-
-
-  <ul class="collapsible">
-    <li>
-      <div class="collapsible-header"><i class="material-icons">filter_drama</i>First</div>
-      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-    </li>
-    <li>
-      <div class="collapsible-header"><i class="material-icons">place</i>Second</div>
-      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-    </li>
-    <li>
-      <div class="collapsible-header"><i class="material-icons">whatshot</i>Third</div>
-      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-    </li>
-  </ul>
   
- {% endblock %}
+<ul class="collapsible" data-collapsible="accordion">
+    {% for recepie in recepies %}
+    <li>
+        <div class="collapsible-header"><i class="material-icons">details</i>
+        <strong>
+            {{recepie.recepie_name}} - {{recepie.category_name}} - {{recepie.diet_name}}
+        </strong>
+        </div>
+        <div class="collapsible-body">
+            <span>{{recepie.recepie_ingredients}}
+            </span>
+            <span>{{recepie.recepie_ins}}
+            </span>
+            <span>{{recepie.recepie_img}}
+            </span>
+            <span>{{recepie.recepie_votes}}
+            </span>
+        </div>
+    </li>
+    {% endfor %}
+    
+</ul>
+
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends 'base.html'%} {% block content %}
+
+<h3>Add recepie</h3>
+<div class="row">
+    <form class="col s12">
+        <div class="row">
+            <div class="input-field col s6">
+                <input placeholder="Chocolate Cupcakes" name="recepie_name" id="recepie_name" type="text" class="validate">
+                <label for="recepie_name">Recepie Name</label>
+            </div>
+            <div class="input-field col s3">
+                <select id="diet_name" name="diet_name">
+                <option value="" disabled selected>Choose your option</option>
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+                <option value="3">Option 3</option>
+            </select>
+                <label>Category Select</label>
+            </div>
+            <div class="input-field col s3">
+                <select id="category_name" name="category_name">
+                <option value="" disabled selected>Choose your option</option>
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+                <option value="3">Option 3</option>
+            </select>
+                <label>Category Select</label>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="input-field col s12">
+                Please copy and paste the URL of an image for this recepie:
+                <div class="input-field inline">
+                    <input id="recepie_img" type="url" class="validate">
+                    <label for="recepie_img">Recepie Image</label>
+                    <span class="helper-text" data-error="wrong" data-success="right"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s12">
+                <textarea id="recepie_ingredients" name="recepie_ingredients" class="materialize-textarea" /></textarea>
+                <label for="recepie_ingredients">Ingredients</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s12">
+                <textarea id="recepie_ins" class="materialize-textarea" name="recepie_ins" /></textarea>
+                <label for="recepie_ins">Instructions</label>
+            </div>
+        </div>
+
+    </form>
+</div>
+
+{% endblock %}

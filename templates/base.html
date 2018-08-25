@@ -6,7 +6,6 @@
         
     </head>
     <body>
-        <h1>Outside!</h1>
         {% block content %}
         {% endblock %}
         
@@ -15,6 +14,7 @@
         <script type="text/javascript">
         $(document).ready(function(){
                 $('.collapsible').collapsible();
+                $('select').formSelect();
             });
         </script>
     </body>
