@@ -4,9 +4,9 @@ from flask_pymongo import PyMongo
 
 app = Flask(__name__)
 app.config["MONGO_DBNAME"] = 'cook_book'
-app.config["MONGO_URL"] = 'mongodb://<dbuser>:<dbpassword>@ds125402.mlab.com:25402/cook_book'
+app.config["MONGO_URI"] = 'mongodb://<dbuser>:<dbpassword>@ds125402.mlab.com:25402/cook_book'
 
-mongo = PyMongo(app)
+mongo = PyMongo(app, connect=False)
 
 @app.route('/')
 @app.route('/get_recepies')
