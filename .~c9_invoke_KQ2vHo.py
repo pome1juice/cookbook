@@ -2,15 +2,7 @@ import os
 from flask import Flask, render_template, redirect, request, url_for
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
-        
-def checkredundant(thisname):
-    _similar = mongo.db.recepies.find( { "recepie_name": thisname } )
-    sim_list=[rec for rec in _similar]
-    if not sim_list:
-        return True
-    else:
-        return False
-        
+
 app = Flask(__name__)
 app.config["MONGO_DBNAME"] = 'cook_book'
 app.config["MONGO_URI"] = 'mongodb://admin:c9user@ds125402.mlab.com:25402/cook_book'
@@ -33,7 +25,10 @@ def add_recepie():
     
 @app.route('/insert_recepie', methods=['POST'])
 def insert_recepie():
-    if checkredundant(request.form["recepie_name"]):
+    thisname = request.form["recepie_name"]
+    _similar = mongo.db.recepies.find( { "recepie_name": thisname } )
+    sim_list=[rec for rec in _similar]
+    if not sim_list:
         recepies = mongo.db.recepies
         rec_dict = request.form.to_dict()
         del rec_dict["action"]
@@ -50,21 +45,10 @@ def edit_recepie(recepie_id):
     all_diets = mongo.db.diets.find()
     return render_template('editrecepie.html', recepie=rec, categories=all_categories, diets=all_diets)
 
-@app.route('/update_recepie/<recepie_id>', methods=["POST"])
+@app.route('/update_recepie/<recepie_id>', method=["POST"])
 def update_recepie(recepie_id):
-    if checkredundant(request.form["recepie_name"]):
-        recepies = mongo.db.recepies
-        recepies.update( {'_id': ObjectId(recepie_id)},
-        {
-            'recepie_name':request.form.get['recepie_name'],
-            'category_name':request.form.get['category_name'],
-            'recepie_ins':request.form.get['recepie_ins'],
-            'recepie_ingredients':request.form.get['recepie_ingredients'],
-            'diet_name':request.form.get['diet_name']
-        })
-        return redirect(url_for('get_recepies'))
-    else:
-        return 'Sorry there was a duplicate recepie in our system please go back'
+    recepies = mongo.db.recepies
+    recepies.update( {'_id': ObjectId(r)} )
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
