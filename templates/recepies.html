@@ -1,26 +1,38 @@
 {% extends 'base.html'%} {% block content %}
 
-<ul class="collapsible" data-collapsible="accordion">
+<ul class="collapsible popout" data-collapsible="accordion">
     {% for recepie in recepies %}
     <li>
         <div class="collapsible-header">
             <div class="col s3">
                 <i class="material-icons">keyboard_arrow_down</i>
-                <a class="waves-effect waves-light btn btn_small red">Like</a>
             </div>
-            <div class="col s9">
+            <div class="col s9 recepie-header">
                 <strong>{{recepie.recepie_name}} </strong>- {{recepie.category_name}} - {{recepie.diet_name}}
             </div>
         </div>
         <div class="collapsible-body">
-            <span>{{recepie.recepie_ingredients}}
-            </span>
-            <span>{{recepie.recepie_ins}}
-            </span>
-            <span>{{recepie.recepie_img}}
-            </span>
-            <span>{{recepie.recepie_votes}}
-            </span>
+            <div class="col s12 m8 offset-m2 l6 offset-l3">
+                <div class="card-panel grey lighten-5 z-depth-1">
+                    <div class="row valign-wrapper">
+                        <div class="col s2">
+                            <img src="{{recepie.recepie_img}}" alt="{{recepie.recepie_name}}" class="circle responsive-img">
+                        </div>
+                        <div class="col s10">
+                            <blockquote>
+                              {{recepie.recepie_ingredients}}
+                            </blockquote>
+                            <p>{{recepie.recepie_ins}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col s2 right">
+                Has been liked {{recepie.recepie_votes}} times
+                <a class="waves-effect waves-light btn btn_small redalign-right green">like</a>
+                <a href="{{ url_for('edit_recepie', recepie_id=recepie._id) }}" class="waves-effect waves-light btn btn_small align-right">Edit</a>
+            </div>
         </div>
     </li>
     {% endfor %}

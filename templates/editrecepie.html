@@ -1,0 +1,69 @@
+{% extends 'base.html'%} {% block content %}
+
+<h3>Edit recepie</h3>
+<div class="row">
+    <form action="{{ url_for('insert_recepie')}}" method="POST" class="col s12">
+        <div class="row">
+
+            <div class="input-field col s4">
+                <input value="{{ recepie.recepie_name }}" name="recepie_name" id="recepie_name" type="text" required>
+                <label for="recepie_name">Recepie Name</label>
+            </div>
+
+            <div class="input-field col s3">
+                <select id="category" name="category_name" required>
+                <option value="" disabled selected>Choose category</option>
+                {% for cat in categories %}
+                    {% if cat.category_name == recepie.category_name %}
+                    <option value="{{cat.category_name}}" selected>{{cat.category_name}}</option>
+                    {% else %}
+                    <option value="{{cat.category_name}}">{{cat.category_name}}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+                <label>Category Select</label>
+            </div>
+
+            <div class="input-field col s5">
+                <select id="diet" name="diet_name" multiple required>
+                <option value="" disabled>Choose diet</option>
+                {% for diet in diets %}
+                    {% if diet.diet_name == recepie.diet_name %}
+                        <option value="{{diet.diet_name}}" selected>{{diet.diet_name}}</option>
+                        {% else %}
+                        <option value="{{diet.diet_name}}">{{diet.diet_name}}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+                <label>Diet Select</label>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="input-field col s12">
+                <input value="{{ recepie.recepie_img }}" name="recepie_img" id="recepie_img" type="text" required>
+                <label for="recepie_img">Please paste in a url for an image of this recepie</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s12">
+                <textarea id="recepie_ingredients" name="recepie_ingredients" class="materialize-textarea" data-length="200"/>{{ recepie.recepie_ingredients }}</textarea>
+                <label for="recepie_ingredients">Ingredients</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s12">
+                <textarea id="recepie_ins" class="materialize-textarea" name="recepie_ins" data-length="500"/>{{ recepie.recepie_ins }}</textarea>
+                <label for="recepie_ins">Instructions</label>
+            </div>
+        </div>
+
+        <button class="btn waves-effect waves-light" type="submit" name="action">Save<i class="material-icons right">done</i></button>
+
+    </form>
+</div>
+
+{% endblock %}

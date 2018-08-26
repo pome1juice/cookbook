@@ -1,11 +1,13 @@
 .btn_small{
-    position:relative;
     height:24px;
     width:60px;
     line-height:24px;
-    margin-left:5px;
-    margin-right:10px;
-    top:-7px;
-    
-    padding: 0 0.5em;
+    margin-left:0.25em;
+    padding-right:0.5em;
+    padding-left: 0.5em;
+    padding-bottom: 0;
+    padding-top: 0;
+}
+.recepie-header{
+    margin-top: 0.1em;
 }

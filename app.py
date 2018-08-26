@@ -1,6 +1,7 @@
 import os
 from flask import Flask, render_template, redirect, request, url_for
 from flask_pymongo import PyMongo
+from bson.objectid import ObjectId
 
 app = Flask(__name__)
 app.config["MONGO_DBNAME"] = 'cook_book'
@@ -37,6 +38,16 @@ def insert_recepie():
     else:
         return 'Sorry there was a duplicate recepie in our system please go back'
     
+@app.route('/edit_recepie/<recepie_id>') 
+def edit_recepie(recepie_id):
+    rec = mongo.db.recepies.find_one({"_id": ObjectId(recepie_id)})
+    all_categories = mongo.db.categories.find()
+    all_diets = mongo.db.diets.find()
+    return render_template('editrecepie.html', recepie=rec, categories=all_categories, diets=all_diets)
+
+@app.route('/update_recepie/<recepie_id>', method=["POST"])
+def update_recepie
+
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
         port=int(os.environ.get('PORT')),
