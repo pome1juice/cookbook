@@ -2,57 +2,58 @@
 
 <h3>Add recepie</h3>
 <div class="row">
-    <form class="col s12">
+    <form action="{{ url_for('insert_recepie')}}" method="POST" class="col s12">
         <div class="row">
-            <div class="input-field col s6">
-                <input placeholder="Chocolate Cupcakes" name="recepie_name" id="recepie_name" type="text" class="validate">
+
+            <div class="input-field col s4">
+                <input placeholder="Chocolate Cupcakes" name="recepie_name" id="recepie_name" type="text" required>
                 <label for="recepie_name">Recepie Name</label>
             </div>
+
             <div class="input-field col s3">
-                <select id="diet_name" name="diet_name">
-                <option value="" disabled selected>Choose your option</option>
-                <option value="1">Option 1</option>
-                <option value="2">Option 2</option>
-                <option value="3">Option 3</option>
+                <select id="category" name="category_name" required>
+                <option value="" disabled selected>Choose category</option>
+                {% for cat in categories %}
+                <option value="{{cat.category_name}}">{{cat.category_name}}</option>
+                {% endfor %}
             </select>
                 <label>Category Select</label>
             </div>
-            <div class="input-field col s3">
-                <select id="category_name" name="category_name">
-                <option value="" disabled selected>Choose your option</option>
-                <option value="1">Option 1</option>
-                <option value="2">Option 2</option>
-                <option value="3">Option 3</option>
+
+            <div class="input-field col s5">
+                <select id="diet" name="diet_name" multiple required>
+                <option value="" disabled>Choose diet</option>
+                {% for diet in diets %}
+                <option value="{{diet.diet_name}}">{{diet.diet_name}}</option>
+                {% endfor %}
             </select>
-                <label>Category Select</label>
+                <label>Diet Select</label>
             </div>
         </div>
 
 
         <div class="row">
             <div class="input-field col s12">
-                Please copy and paste the URL of an image for this recepie:
-                <div class="input-field inline">
-                    <input id="recepie_img" type="url" class="validate">
-                    <label for="recepie_img">Recepie Image</label>
-                    <span class="helper-text" data-error="wrong" data-success="right"></span>
-                </div>
+                <input placeholder="http:\\www.example.cookies.com\img.jpeg" name="recepie_img" id="recepie_img" type="text" required>
+                <label for="recepie_img">Please paste in a url for an image of this recepie</label>
             </div>
         </div>
 
         <div class="row">
             <div class="input-field col s12">
-                <textarea id="recepie_ingredients" name="recepie_ingredients" class="materialize-textarea" /></textarea>
+                <textarea id="recepie_ingredients" name="recepie_ingredients" class="materialize-textarea" data-length="200" /></textarea>
                 <label for="recepie_ingredients">Ingredients</label>
             </div>
         </div>
 
         <div class="row">
             <div class="input-field col s12">
-                <textarea id="recepie_ins" class="materialize-textarea" name="recepie_ins" /></textarea>
+                <textarea id="recepie_ins" class="materialize-textarea" name="recepie_ins" data-length="500" /></textarea>
                 <label for="recepie_ins">Instructions</label>
             </div>
         </div>
+
+        <button class="btn waves-effect waves-light" type="submit" name="action">Submit<i class="material-icons right">add</i></button>
 
     </form>
 </div>

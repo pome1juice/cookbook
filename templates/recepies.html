@@ -1,13 +1,16 @@
-{% extends 'base.html'%}
-{% block content %}
-  
+{% extends 'base.html'%} {% block content %}
+
 <ul class="collapsible" data-collapsible="accordion">
     {% for recepie in recepies %}
     <li>
-        <div class="collapsible-header"><i class="material-icons">details</i>
-        <strong>
-            {{recepie.recepie_name}} - {{recepie.category_name}} - {{recepie.diet_name}}
-        </strong>
+        <div class="collapsible-header">
+            <div class="col s3">
+                <i class="material-icons">keyboard_arrow_down</i>
+                <a class="waves-effect waves-light btn btn_small red">Like</a>
+            </div>
+            <div class="col s9">
+                <strong>{{recepie.recepie_name}} </strong>- {{recepie.category_name}} - {{recepie.diet_name}}
+            </div>
         </div>
         <div class="collapsible-body">
             <span>{{recepie.recepie_ingredients}}
@@ -21,7 +24,7 @@
         </div>
     </li>
     {% endfor %}
-    
+
 </ul>
 
 {% endblock %}

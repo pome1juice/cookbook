@@ -16,7 +16,26 @@ def get_recepies():
 
 @app.route('/add_recepie')
 def add_recepie():
-    return render_template('addrecepie.html')
+    _categories=mongo.db.categories.find()
+    _diets=mongo.db.diets.find()
+    category_list=[category for category in _categories]
+    diet_list=[diet for diet in _diets]
+    return render_template('addrecepie.html', categories = category_list, diets = diet_list)
+    
+@app.route('/insert_recepie', methods=['POST'])
+def insert_recepie():
+    thisname = request.form["recepie_name"]
+    _similar = mongo.db.recepies.find( { "recepie_name": thisname } )
+    sim_list=[rec for rec in _similar]
+    if not sim_list:
+        recepies = mongo.db.recepies
+        rec_dict = request.form.to_dict()
+        del rec_dict["action"]
+        rec_dict["recepie_votes"]=0
+        recepies.insert_one(rec_dict)
+        return redirect(url_for('get_recepies'))
+    else:
+        return 'Sorry there was a duplicate recepie in our system please go back'
     
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
