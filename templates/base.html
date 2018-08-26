@@ -9,25 +9,57 @@
 
 <body>
     <header>
+        <ul id="slide-out" class="sidenav">
+            <li><a class="subheader">Browse by diet</a></li>
+            <li><a class="waves-effect" href="{{ url_for('get_recepies_ofdie', diet_name='Vegan and Vegeterian') }}">Vegan and Vegeterian</a></li>
+            <li><a class="waves-effect" href="{{ url_for('get_recepies_ofdie', diet_name='Gluten Free') }}">Gluten Free</a></li>
+            <li><a class="waves-effect" href="{{ url_for('get_recepies_ofdie', diet_name='Low Fat') }}">Low Fat</a></li>
+            <li><a class="waves-effect" href="{{ url_for('get_recepies_ofdie', diet_name='Low Carb') }}">Low Carb</a></li>
+            <li>
+                <div class="divider"></div>
+            </li>
+            <li><a class="subheader">Browse by category</a></li>
+            <li><a class="waves-effect" href="{{ url_for('get_recepies_ofcat', category_name='Healthy') }}">Healthy</a></li>
+            <li><a class="waves-effect" href="{{ url_for('get_recepies_ofcat', category_name='Party') }}">Party</a></li>
+            <li><a class="waves-effect" href="{{ url_for('get_recepies_ofcat', category_name='Family') }}">Family</a></li>
+            <li><a class="waves-effect" href="{{ url_for('get_recepies_ofcat', category_name='Budget') }}">Budget</a></li>
+            <li>
+                <div class="divider"></div>
+            </li>
+            <li><a href="{{ url_for('add_recepie') }}" class="waves-effect waves-light btn align-enter">Add recepie</a></li>
+        </ul>
+        <a href="#" data-target="slide-out" class="btn-floating btn-large sidenav-trigger mobilebtn"><i class="material-icons">menu</i></a>
+
+
+        <ul id="dropdown1" class="dropdown-content">
+            <li><a class="waves-effect" href="{{ url_for('get_recepies_ofcat', category_name='Healthy') }}">Healthy</a></li>
+            <li class="divider"></li>
+            <li><a class="waves-effect" href="{{ url_for('get_recepies_ofcat', category_name='Party') }}">Party</a></li>
+            <li class="divider"></li>
+            <li><a class="waves-effect" href="{{ url_for('get_recepies_ofcat', category_name='Family') }}">Family</a></li>
+            <li class="divider"></li>
+            <li><a class="waves-effect" href="{{ url_for('get_recepies_ofcat', category_name='Budget') }}">Budget</a></li>
+        </ul>
+        <ul id="dropdown2" class="dropdown-content">
+            <li><a class="waves-effect" href="{{ url_for('get_recepies_ofdie', diet_name='Vegan and Vegeterian') }}">Vegan and Vegeterian</a></li>
+            <li class="divider"></li>
+            <li><a class="waves-effect" href="{{ url_for('get_recepies_ofdie', diet_name='Gluten Free') }}">Gluten Free</a></li>
+            <li class="divider"></li>
+            <li><a class="waves-effect" href="{{ url_for('get_recepies_ofdie', diet_name='Low Fat') }}">Low Fat</a></li>
+            <li class="divider"></li>
+            <li><a class="waves-effect" href="{{ url_for('get_recepies_ofdie', diet_name='Low Carb') }}">Low Carb</a></li>
+        </ul>
         <nav>
-            <div class="nav-wrapper">
-                <a href="{{ url_for('get_recepies') }}" class="brand-logo">Logo</a>
-                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-                <ul class="right hide-on-med-and-down">
-                    <li><a href="sass.html">Sass</a></li>
-                    <li><a href="badges.html">Components</a></li>
-                    <li><a href="collapsible.html">Javascript</a></li>
-                    <li><a href="{{ url_for('add_recepie') }}" class="waves-effect waves-light btn btn_small redalign-right">Add recepie</a></li>
+            <div class="nav-wrapper menu">
+                <a href="{{ url_for('get_recepies') }}" class="brand-logo icon">COOKBOOK.COM</a>
+                <ul class="right hide-on-med-and-down menuul">
+                    <li><a class="dropdown-trigger" href="#!" data-target="dropdown2">Browse by diets<i class="material-icons right">keyboard_arrow_down</i></a></li>
+                    <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Browse by categories<i class="material-icons right">keyboard_arrow_down</i></a></li>
+                    <li><a href="{{ url_for('add_recepie') }}" class="waves-effect waves-light btn align-enter">Add recepie</a></li>
                 </ul>
             </div>
         </nav>
 
-        <ul class="sidenav" id="mobile-demo">
-            <li><a href="sass.html">Sass</a></li>
-            <li><a href="badges.html">Components</a></li>
-            <li><a href="collapsible.html">Javascript</a></li>
-            <li><a href="{{ url_for('add_recepie') }}" class="waves-effect waves-light btn btn_small redalign-right">Add recepie</a></li>
-        </ul>
     </header>
     <div class="container">
         {% block content %} {% endblock %}
@@ -38,6 +70,7 @@
         $(document).ready(function() {
             $('.collapsible').collapsible();
             $('select').formSelect();
+            $('.sidenav').sidenav();
             $(".dropdown-trigger").dropdown();
         });
     </script>

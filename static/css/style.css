@@ -1,19 +1,37 @@
-.btn_small{
-    height:24px;
-    width:60px;
-    line-height:24px;
-    margin-left:0.25em;
-    padding-right:0.5em;
+.btn_small {
+    height: 24px;
+    width: 60px;
+    line-height: 24px;
+    margin-left: 0.25em;
+    padding-right: 0.5em;
     padding-left: 0.5em;
     padding-bottom: 0;
     padding-top: 0;
 }
-.recepie-header{
+
+.recepie-header {
     margin-top: 0.1em;
 }
-.page {
-  display: none;
+.menu .menuul{
+    visibility: visible
 }
-.page-active {
-  display: block;
+.mobilebtn {
+    visibility: hidden;
+    position: fixed;
+    bottom:0;
+    left: 0;
+    margin-bottom: 0.5em;
+    margin-left: 1em;
+}
+.icon{
+    margin-left: 0.5em;
+}
+
+@media only screen and (max-width: 992px) {
+    .mobilebtn {
+        visibility: visible;
+    }
+    .menu .menuul{
+        visibility: hidden;
+    }
 }

@@ -2,7 +2,7 @@
 
 <h3>Edit recepie</h3>
 <div class="row">
-    <form action="{{ url_for('insert_recepie')}}" method="POST" class="col s12">
+    <form action="{{ url_for('update_recepie', recepie_id=recepie._id)}}" method="POST" class="col s12">
         <div class="row">
 
             <div class="input-field col s4">
@@ -25,7 +25,7 @@
             </div>
 
             <div class="input-field col s5">
-                <select id="diet" name="diet_name" multiple required>
+                <select id="diet" name="diet_name" required>
                 <option value="" disabled>Choose diet</option>
                 {% for diet in diets %}
                     {% if diet.diet_name == recepie.diet_name %}

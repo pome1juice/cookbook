@@ -12,7 +12,7 @@
 
             <div class="input-field col s3">
                 <select id="category" name="category_name" required>
-                <option value="" disabled selected>Choose category</option>
+                <option value="" disabled selected>Category</option>
                 {% for cat in categories %}
                 <option value="{{cat.category_name}}">{{cat.category_name}}</option>
                 {% endfor %}
@@ -21,8 +21,8 @@
             </div>
 
             <div class="input-field col s5">
-                <select id="diet" name="diet_name" multiple required>
-                <option value="" disabled>Choose diet</option>
+                <select id="diet" name="diet_name" required>
+                <option value="" disabled>Diet</option>
                 {% for diet in diets %}
                 <option value="{{diet.diet_name}}">{{diet.diet_name}}</option>
                 {% endfor %}
