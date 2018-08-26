@@ -49,18 +49,39 @@ def edit_recepie(recepie_id):
     all_categories = mongo.db.categories.find()
     all_diets = mongo.db.diets.find()
     return render_template('editrecepie.html', recepie=rec, categories=all_categories, diets=all_diets)
+    
+@app.route('/like_recepie/<recepie_id>') 
+def like_recepie(recepie_id):
+    recepies = mongo.db.recepies
+    rec = mongo.db.recepies.find_one({"_id": ObjectId(recepie_id)})
+    current_vote = int(rec['recepie_votes'])
+    current_vote +=1
+    recepies.update( {'_id': ObjectId(recepie_id)},
+    {
+        'recepie_votes':current_vote,
+        'recepie_name':rec['recepie_name'],
+        'category_name':rec['category_name'],
+        'recepie_ins':rec['recepie_ins'],
+        'recepie_ingredients':rec['recepie_ingredients'],
+        'diet_name':rec['diet_name'],
+        'recepie_img':rec['recepie_img']
+    })
+    return redirect(url_for('get_recepies'))
 
 @app.route('/update_recepie/<recepie_id>', methods=["POST"])
 def update_recepie(recepie_id):
+    rec = mongo.db.recepies.find_one({"_id": ObjectId(recepie_id)})
     if checkredundant(request.form["recepie_name"]):
         recepies = mongo.db.recepies
         recepies.update( {'_id': ObjectId(recepie_id)},
         {
+            'recepie_votes': int(rec['recepie_votes']),
             'recepie_name':request.form.get['recepie_name'],
             'category_name':request.form.get['category_name'],
             'recepie_ins':request.form.get['recepie_ins'],
             'recepie_ingredients':request.form.get['recepie_ingredients'],
-            'diet_name':request.form.get['diet_name']
+            'diet_name':request.form.get['diet_name'],
+            'recepie_img':request.form.get['recepie_img']
         })
         return redirect(url_for('get_recepies'))
     else:

@@ -11,3 +11,9 @@
 .recepie-header{
     margin-top: 0.1em;
 }
+.page {
+  display: none;
+}
+.page-active {
+  display: block;
+}

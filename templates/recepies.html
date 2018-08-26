@@ -1,5 +1,4 @@
 {% extends 'base.html'%} {% block content %}
-
 <ul class="collapsible popout" data-collapsible="accordion">
     {% for recepie in recepies %}
     <li>
@@ -20,17 +19,17 @@
                         </div>
                         <div class="col s10">
                             <blockquote>
-                              {{recepie.recepie_ingredients}}
+                                {{recepie.recepie_ingredients}}
                             </blockquote>
                             <p>{{recepie.recepie_ins}}</p>
                         </div>
                     </div>
                 </div>
             </div>
-            
+
             <div class="col s2 right">
                 Has been liked {{recepie.recepie_votes}} times
-                <a class="waves-effect waves-light btn btn_small redalign-right green">like</a>
+                <a href="{{ url_for('like_recepie', recepie_id=recepie._id) }}" class="waves-effect waves-light btn btn_small redalign-right green">like</a>
                 <a href="{{ url_for('edit_recepie', recepie_id=recepie._id) }}" class="waves-effect waves-light btn btn_small align-right">Edit</a>
             </div>
         </div>
