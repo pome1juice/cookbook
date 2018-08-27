@@ -10,6 +10,10 @@
 <body>
     <header>
         <ul id="slide-out" class="sidenav">
+            <li><a class="waves-effect" href="{{ url_for('get_recepies_ofvote') }}">Sort by Popularity</a></li>
+            <li>
+                <div class="divider"></div>
+            </li>
             <li><a class="subheader">Browse by diet</a></li>
             <li><a class="waves-effect" href="{{ url_for('get_recepies_ofdie', diet_name='Vegan and Vegeterian') }}">Vegan and Vegeterian</a></li>
             <li><a class="waves-effect" href="{{ url_for('get_recepies_ofdie', diet_name='Gluten Free') }}">Gluten Free</a></li>
@@ -53,6 +57,7 @@
             <div class="nav-wrapper menu">
                 <a href="{{ url_for('get_recepies') }}" class="brand-logo icon">COOKBOOK.COM</a>
                 <ul class="right hide-on-med-and-down menuul">
+                    <li><a class="waves-effect" href="{{ url_for('get_recepies_ofvote') }}">Sort by Popularity</a></li>
                     <li><a class="dropdown-trigger" href="#!" data-target="dropdown2">Browse by diets<i class="material-icons right">keyboard_arrow_down</i></a></li>
                     <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Browse by categories<i class="material-icons right">keyboard_arrow_down</i></a></li>
                     <li><a href="{{ url_for('add_recepie') }}" class="waves-effect waves-light btn align-enter">Add recepie</a></li>

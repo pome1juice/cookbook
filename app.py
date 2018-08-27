@@ -42,6 +42,12 @@ def get_recepies_ofdie(diet_name):
         return '<h1 style="text-align:center; margin-top:5em;">Sorry there was no such recepies with this diet, please go back</h1>'
     return render_template("recepiesdiet.html", 
     recepies=mongo.db.recepies.find(myquery), diet_name=diet_name)
+    
+@app.route('/get_recepies_ofvote')
+def get_recepies_ofvote():
+    recepies=mongo.db.recepies.find().sort([("recepie_votes", -1)])
+    return render_template("recepies.html", 
+    recepies=recepies)
 
 @app.route('/add_recepie')
 def add_recepie():
@@ -86,7 +92,7 @@ def like_recepie(recepie_id):
         'diet_name':rec['diet_name'],
         'recepie_img':rec['recepie_img']
     })
-    return redirect(url_for('get_recepies'))
+    return redirect(url_for('get_recepies_ofvote'))
 
 @app.route('/update_recepie/<recepie_id>', methods=["POST"])
 def update_recepie(recepie_id):
