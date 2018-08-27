@@ -12,27 +12,44 @@
 .recepie-header {
     margin-top: 0.1em;
 }
-.menu .menuul{
+
+.menu .menuul {
     visibility: visible
 }
+
 .mobilebtn {
     visibility: hidden;
     position: fixed;
-    bottom:0;
+    bottom: 0;
     left: 0;
     margin-bottom: 0.5em;
     margin-left: 1em;
 }
-.icon{
+
+.icon {
     margin-left: 0.5em;
+}
+
+.recimg {
+    visibility: visible;
 }
 
 @media only screen and (max-width: 992px) {
     .mobilebtn {
         visibility: visible;
     }
-    .menu .menuul{
+    .menu .menuul {
         visibility: hidden;
     }
 }
 
+@media only screen and (max-width: 600px) {
+    .recimg {
+        visibility: hidden !important;
+        height: 0;
+        width: 0;
+        margin: 0;
+        padding: 0;
+    }
+
+}
