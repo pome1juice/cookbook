@@ -2,6 +2,7 @@ import os
 from flask import Flask, render_template, redirect, request, url_for
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
+
         
 def checkredundant(thisname):
     _similar = mongo.db.recepies.find( { "recepie_name": thisname } )
@@ -16,6 +17,7 @@ app.config["MONGO_DBNAME"] = 'cook_book'
 app.config["MONGO_URI"] = 'mongodb://admin:c9user@ds125402.mlab.com:25402/cook_book'
 
 mongo = PyMongo(app)
+
 
 @app.route('/')
 @app.route('/get_recepies')

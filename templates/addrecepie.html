@@ -6,13 +6,14 @@
         <div class="row">
 
             <div class="input-field col s4">
-                <input placeholder="Chocolate Cupcakes" name="recepie_name" id="recepie_name" type="text" required>
+                <input placeholder="Chocolate Cupcakes" name="recepie_name" id="recepie_name" type="text" class="validate" required>
                 <label for="recepie_name">Recepie Name</label>
+                <span class="helper-text" data-error="Name needed"></span>
             </div>
 
             <div class="input-field col s3">
-                <select id="category" name="category_name" required>
-                <option value="" disabled selected>Category</option>
+                <select id="category" name="category_name">
+                <option value="">Category</option>
                 {% for cat in categories %}
                 <option value="{{cat.category_name}}">{{cat.category_name}}</option>
                 {% endfor %}
@@ -21,8 +22,8 @@
             </div>
 
             <div class="input-field col s5">
-                <select id="diet" name="diet_name" required>
-                <option value="" disabled>Diet</option>
+                <select id="diet" name="diet_name">
+                <option value="">Diet</option>
                 {% for diet in diets %}
                 <option value="{{diet.diet_name}}">{{diet.diet_name}}</option>
                 {% endfor %}
@@ -34,22 +35,25 @@
 
         <div class="row">
             <div class="input-field col s12">
-                <input placeholder="http:\\www.example.cookies.com\img.jpeg" name="recepie_img" id="recepie_img" type="text" required>
+                <input placeholder="http:\\www.example.cookies.com\img.jpeg" name="recepie_img" id="recepie_img" type="url" class="validate" required>
                 <label for="recepie_img">Please paste in a url for an image of this recepie</label>
+                <span class="helper-text" data-error="Wrong url"></span>
             </div>
         </div>
 
         <div class="row">
             <div class="input-field col s12">
-                <textarea id="recepie_ingredients" name="recepie_ingredients" class="materialize-textarea" data-length="200" /></textarea>
+                <textarea id="recepie_ingredients" name="recepie_ingredients" class="materialize-textarea" data-length="100" class="validate" required></textarea>
                 <label for="recepie_ingredients">Ingredients</label>
+                <span class="helper-text" data-error="Please respect the length"></span>
             </div>
         </div>
 
         <div class="row">
             <div class="input-field col s12">
-                <textarea id="recepie_ins" class="materialize-textarea" name="recepie_ins" data-length="500" /></textarea>
+                <textarea id="recepie_ins" name="recepie_ins" class="materialize-textarea" data-length="200" class="validate" required></textarea>
                 <label for="recepie_ins">Instructions</label>
+                <span class="helper-text" data-error="Please respect the length"></span></span>
             </div>
         </div>
 
